@@ -1,15 +1,14 @@
 import React from 'react'
 
 import PageTemplate from '../templates/PageTemplate'
-// import Header from '../../components/HeaderAuth'
 import Home from '../components/Home'
-// import Footer from '../../components/Footer';
+import BottomNav from '../components/BottomNav'
 
 export default function HomePage(props) {
   return (
     <PageTemplate
-      // header={<Header title="Home" />}
       content={<Home {...props} />}
+      bottomNav={<BottomNav navIndex={0} {...props} />}
     />
   )
 }

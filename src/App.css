@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.MuiDialog-root {
+  top: auto !important
+}
+
+.MuiDialog-container {
+  height: 250px !important
+}

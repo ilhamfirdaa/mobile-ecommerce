@@ -9,49 +9,37 @@ import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles'
 
 import themes from '../theme'
 
-const useStyles = makeStyles((theme) => ({
-  header: {
-    boxShadow: '0px 0px 0px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 0px 0px rgba(0,0,0,0.12)',
-  },
-  footer: {
-    backgroundColor: '#0F131C',
-    padding: '10px 0',
-    marginTop: theme.spacing(8),
-  },
+const useStyles = makeStyles(() => ({
   content: {
-    // minHeight: 'calc(100vh - 150px)',
-    // marginBottom: theme.spacing(8),
+    minHeight: '100vh',
+    padding: 0,
   },
   bNav: {
-    zIndex: 99999,
+    zIndex: 9,
     position: 'fixed',
     bottom: 0,
     padding: 0,
+    border: 'solid 1px #B8B8B8',
   },
 }))
 
 const PageTemplate = ({
-  // header, content, footer, bottomNav,
-  content,
+  content, bottomNav,
 }) => {
   const classes = useStyles()
 
   return (
     <MuiThemeProvider theme={themes}>
       <CssBaseline />
-      {/* <AppBar position="sticky" color="inherit" className={classes.header}>{header}</AppBar> */}
       <Container component="main" className={classes.content} maxWidth="xl">{content}</Container>
-      {/* <Container component="main" className={classes.bNav} maxWidth="xl">{bottomNav}</Container> */}
-      {/* <Container component="main" className={classes.footer} maxWidth="xl">{footer}</Container> */}
+      <Container component="main" className={classes.bNav} maxWidth="xl">{bottomNav}</Container>
     </MuiThemeProvider>
   )
 }
 
 PageTemplate.propTypes = {
-  // header: PropTypes.node,
-  // bottomNav: PropTypes.node,
   content: PropTypes.node.isRequired,
-  // footer: PropTypes.node,
+  bottomNav: PropTypes.node,
 }
 
 export default PageTemplate

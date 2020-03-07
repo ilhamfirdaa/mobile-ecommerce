@@ -19,8 +19,7 @@ import { setLogin } from '../actions'
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
-    marginTop: theme.spacing(10),
-    padding: theme.spacing(2),
+    padding: theme.spacing(10, 2, 0),
   },
 }))
 
@@ -139,5 +138,5 @@ const Login = ({ isLogin, dispatch }) => {
 }
 
 export default connect((state) => ({
-  isLogin: state.app.isLogin,
+  isLogin: state.appLogin.isLogin,
 }), null)(Login)
