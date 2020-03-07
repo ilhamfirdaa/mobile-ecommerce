@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import Truncate from 'react-truncate'
 
+import CircularProgress from '@material-ui/core/CircularProgress'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import GridList from '@material-ui/core/GridList'
@@ -12,11 +13,12 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import SearchIcon from '@material-ui/icons/Search'
 
-import { setLoading, toogleWishlist } from '../actions'
+import { setLogin, toogleWishlist } from '../actions'
 
 const useStyles = makeStyles((theme) => ({
   containerHeader: {
@@ -80,14 +82,21 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'black',
   },
+  loaderSpinner: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
 }))
 
 const Home = ({
-  history, isLoading, wishlist, dispatch,
+  history, wishlist, dispatch,
 }) => {
   const classes = useStyles()
   const [categories, setCategories] = useState()
   const [products, setProducts] = useState()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getData()
@@ -99,7 +108,7 @@ const Home = ({
       if (res.status === 200) {
         setCategories(res.data[0].data.category)
         setProducts(res.data[0].data.productPromo)
-        dispatch(setLoading(!isLoading))
+        setIsLoading(false)
       }
     } catch (error) {
       console.log(error)
@@ -139,7 +148,7 @@ const Home = ({
               onClick={() => history.push('/wishlist')}
             />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={8}>
             <TextField
               variant="outlined"
               fullWidth
@@ -155,6 +164,13 @@ const Home = ({
                   </InputAdornment>
                 ),
               }}
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <ExitToAppIcon
+              fontSize="large"
+              style={{ color: '#C3C3C3' }}
+              onClick={() => dispatch(setLogin(false))}
             />
           </Grid>
         </Grid>
@@ -227,13 +243,12 @@ const Home = ({
           </Container>
         </>
       ) : (
-        <h4>Loading</h4>
+        <CircularProgress className={classes.loaderSpinner} />
       )}
     </>
   )
 }
 
 export default connect((state) => ({
-  isLoading: state.appLoading.isLoading,
   wishlist: state.appWishlist,
 }), null)(Home)

@@ -3,11 +3,6 @@ export const setLogin = (isLogin) => ({
   isLogin,
 })
 
-export const setLoading = (isLoading) => ({
-  type: 'SET_LOADING',
-  isLoading,
-})
-
 export const toogleWishlist = (product) => ({
   type: 'TOOGLE_WISHLIST',
   product,

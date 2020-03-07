@@ -16,7 +16,7 @@ import * as serviceWorker from './serviceWorker'
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['appLoading'],
+  // blacklist: ['appLoading'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

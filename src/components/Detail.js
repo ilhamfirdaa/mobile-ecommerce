@@ -102,8 +102,7 @@ const Detail = ({
 }) => {
   const classes = useStyles()
   const { product } = location.state
-  const shareUrl = `${window.location.href}${location.pathname}`
-  console.log(product)
+  const shareUrl = window.location.href
   const [openModal, setOpenModal] = useState(false)
   const [state, setState] = useState({
     open: false,

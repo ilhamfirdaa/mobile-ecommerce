@@ -1,8 +1,8 @@
 import React from 'react'
 
 import PageTemplate from '../templates/PageTemplate'
-import Home from '../components/Home'
 import BottomNav from '../components/BottomNav'
+import Home from '../components/Home'
 
 export default function HomePage(props) {
   return (

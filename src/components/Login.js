@@ -23,17 +23,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Login = ({ isLogin, dispatch }) => {
+const Login = ({ dispatch }) => {
   const classes = useStyles()
 
   const responseFacebook = (response) => {
     console.log(response)
-    dispatch(setLogin(!isLogin))
+    dispatch(setLogin(true))
   }
 
   const responseGoogle = async (response) => {
     console.log(response)
-    await dispatch(setLogin(!isLogin))
+    dispatch(setLogin(true))
   }
 
   return (
@@ -81,7 +81,7 @@ const Login = ({ isLogin, dispatch }) => {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={() => dispatch(setLogin(!isLogin))}
+              onClick={() => dispatch(setLogin(true))}
               style={{ backgroundColor: '#6C727C', color: 'white' }}
             >
               Sign In
@@ -137,6 +137,4 @@ const Login = ({ isLogin, dispatch }) => {
   )
 }
 
-export default connect((state) => ({
-  isLogin: state.appLogin.isLogin,
-}), null)(Login)
+export default connect()(Login)
