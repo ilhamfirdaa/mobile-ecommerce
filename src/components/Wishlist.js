@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 import Truncate from 'react-truncate'
 
 import {
@@ -46,6 +47,9 @@ const Wishlist = ({ history, wishlist }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Wishlist</title>
+      </Helmet>
       <Container maxWidth="xl" className={classes.containerHeader}>
         <Grid
           container
@@ -94,7 +98,7 @@ const Wishlist = ({ history, wishlist }) => {
               <Container maxWidth="xl" align="center" className={classes.wishContainer}>
                 <img src={wish} alt="not found" width="80%" />
                 <Typography variant="subtitle1">
-                  Save your dream item here
+                  Save your dream products here
                 </Typography>
               </Container>
             )}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
 import Truncate from 'react-truncate'
 
 import {
@@ -58,6 +59,9 @@ const Search = ({ history, location }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Search</title>
+      </Helmet>
       <Container maxWidth="xl" className={classes.containerHeader}>
         <Grid
           container

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 import GoogleLogin from 'react-google-login'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
@@ -38,103 +39,108 @@ const Login = ({ dispatch }) => {
   }
 
   return (
-    <Container className={classes.formContainer} maxWidth="xl">
-      <form>
-        <Grid container spacing={2}>
-          <Grid item xs={12} align="center">
-            <Typography variant="h5">
-              LOGIN
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              fullWidth
-              id="email"
-              label="Email address"
-              name="email"
-              autoComplete="email"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              fullWidth
-              id="password"
-              label="Password"
-              name="password"
-              autoComplete="password"
-            />
-          </Grid>
-          <Grid item xs={7}>
-            <FormControlLabel
-              control={(
-                <Checkbox
-                  value="rememberMe"
-                  color="primary"
-                />
+    <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <Container className={classes.formContainer} maxWidth="xl">
+        <form>
+          <Grid container spacing={2}>
+            <Grid item xs={12} align="center">
+              <Typography variant="h5">
+                LOGIN
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                id="email"
+                label="Email address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                id="password"
+                label="Password"
+                name="password"
+                autoComplete="password"
+              />
+            </Grid>
+            <Grid item xs={7}>
+              <FormControlLabel
+                control={(
+                  <Checkbox
+                    value="rememberMe"
+                    color="primary"
+                  />
           )}
-              label="Remember Me"
-            />
-          </Grid>
-          <Grid item xs={5} align="right">
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={() => dispatch(setLogin(true))}
-              style={{ backgroundColor: '#6C727C', color: 'white' }}
-            >
-              Sign In
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <FacebookLogin
-            appId="150675322737055"
-            fields="name,email,picture"
-            callback={responseFacebook}
-            render={(renderFacebook) => (
+                label="Remember Me"
+              />
+            </Grid>
+            <Grid item xs={5} align="right">
               <Button
                 fullWidth
-                variant="outlined"
+                variant="contained"
+                color="primary"
+                onClick={() => dispatch(setLogin(true))}
+                style={{ backgroundColor: '#6C727C', color: 'white' }}
+              >
+                Sign In
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <FacebookLogin
+              appId="150675322737055"
+              fields="name,email,picture"
+              callback={responseFacebook}
+              render={(renderFacebook) => (
+                <Button
+                  fullWidth
+                  variant="outlined"
                 // color="primary"
                 // style={{ backgroundColor: '#475993', color: 'white' }}
-                startIcon={<img src={facebookIcon} alt="facebook icon" height="20" width="20" />}
-                onClick={renderFacebook.onClick}
-              >
-                Sign In with Facebook
-              </Button>
-            )}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <GoogleLogin
-            clientId="539178678093-nqs3clbt26fundk16ptv594o264qa9dp.apps.googleusercontent.com"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            accessType
+                  startIcon={<img src={facebookIcon} alt="facebook icon" height="20" width="20" />}
+                  onClick={renderFacebook.onClick}
+                >
+                  Sign In with Facebook
+                </Button>
+              )}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <GoogleLogin
+              clientId="539178678093-nqs3clbt26fundk16ptv594o264qa9dp.apps.googleusercontent.com"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              accessType
             // uxMode="redirect"
             // redirectUri="http://localhost:3000/login"
             // theme="dark"
-            render={(renderGoogle) => (
-              <Button
-                fullWidth
-                variant="outlined"
+              render={(renderGoogle) => (
+                <Button
+                  fullWidth
+                  variant="outlined"
                 // color="primary"
                 // style={{ backgroundColor: '#5591F5', color: 'white' }}
-                startIcon={<img src={googleIcon} alt="google icon" height="20" width="20" />}
-                onClick={renderGoogle.onClick}
-              >
-                Sign In with Google
-              </Button>
-            )}
-          />
+                  startIcon={<img src={googleIcon} alt="google icon" height="20" width="20" />}
+                  onClick={renderGoogle.onClick}
+                >
+                  Sign In with Google
+                </Button>
+              )}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   )
 }
 

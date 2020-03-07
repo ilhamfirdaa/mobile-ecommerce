@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Truncate from 'react-truncate'
 
@@ -135,6 +136,9 @@ const Home = ({
 
   return (
     <>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <Container maxWidth="xl" className={classes.containerHeader}>
         <Grid
           container

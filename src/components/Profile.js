@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
 import Truncate from 'react-truncate'
 import { Link as LinkScroll } from 'react-scroll'
 
@@ -74,6 +75,9 @@ const Profile = ({ history, purchased }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Profile</title>
+      </Helmet>
       <Fade in={fading}>
         <LinkScroll to="top" spy smooth duration={1000}>
           <Fab className={classes.fab}>

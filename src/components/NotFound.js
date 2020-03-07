@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
@@ -17,19 +18,24 @@ const useStyles = makeStyles(() => ({
 const NotFound = ({ history }) => {
   const classes = useStyles()
   return (
-    <Container maxWidth="xl" align="center" className={classes.mainContainer}>
-      <img src={notFound} alt="not found" width="80%" />
-      <Typography variant="h6">
-        Page not found
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => history.goBack()}
-      >
-        Back
-      </Button>
-    </Container>
+    <>
+      <Helmet>
+        <title>Page Not Found</title>
+      </Helmet>
+      <Container maxWidth="xl" align="center" className={classes.mainContainer}>
+        <img src={notFound} alt="not found" width="80%" />
+        <Typography variant="h6">
+          Page not found
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => history.goBack()}
+        >
+          Back
+        </Button>
+      </Container>
+    </>
   )
 }
 

@@ -1,5 +1,7 @@
 import React, { useState, forwardRef } from 'react'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
+
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -19,8 +21,6 @@ import {
   Container,
   Divider,
   Grid,
-  InputAdornment,
-  TextField,
   Typography,
 } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
@@ -36,7 +36,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import LinkRoundedIcon from '@material-ui/icons/LinkRounded'
-import SearchIcon from '@material-ui/icons/Search'
 import ShareIcon from '@material-ui/icons/Share'
 
 import { toogleWishlist, buyProduct } from '../actions'
@@ -250,6 +249,9 @@ const Detail = ({
 
   return (
     <>
+      <Helmet>
+        <title>Detail</title>
+      </Helmet>
       <Container maxWidth="xl" className={classes.containerHeader}>
         <Grid
           container
@@ -260,21 +262,9 @@ const Detail = ({
             <ArrowBackIcon onClick={() => handleBack()} />
           </Grid>
           <Grid item xs={8}>
-            <TextField
-              variant="outlined"
-              fullWidth
-              id="search"
-              placeholder="Search"
-              name="text"
-              size="small"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <Typography variant="subtitle1">
+              Product Detail
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             <ShareIcon onClick={handleClickOpen} />
