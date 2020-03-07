@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
+import wish from '../assets/images/wish.svg'
+
 const useStyles = makeStyles((theme) => ({
   containerHeader: {
     padding: theme.spacing(1, 2),
@@ -21,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'rgba(0, 0, 0, 0.12) 0px 2px 4px 0px',
   },
   containerContent: {
+    padding: theme.spacing(8, 2, 2),
+  },
+  wishContainer: {
     padding: theme.spacing(8, 2, 2),
   },
 }))
@@ -60,30 +65,39 @@ const Wishlist = ({ history, wishlist }) => {
 
       <Container maxWidth="xl" className={classes.containerContent}>
         <Grid container spacing={2}>
-          {wishlist.map((item, i) => (
-            <Grid
-              item
-              xs={12}
-              onClick={() => handleClickProduct(item)}
-              key={`${item.id}_${i}`}
-            >
-              <Grid container spacing={2}>
-                <Grid item xs={4}>
-                  <img src={item.imageUrl} alt={item.title} width="96" height="96" />
-                </Grid>
-                <Grid item xs={8}>
-                  <Typography variant="body1">
-                    <Truncate lines={2} ellipsis={<span>...</span>}>
-                      {item.title}
-                    </Truncate>
-                  </Typography>
-                  <Typography variant="body1">
-                    {item.price}
-                  </Typography>
+          {Array.isArray(wishlist) && wishlist.length
+            ? wishlist.map((item, i) => (
+              <Grid
+                item
+                xs={12}
+                onClick={() => handleClickProduct(item)}
+                key={`${item.id}_${i}`}
+              >
+                <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <img src={item.imageUrl} alt={item.title} width="96" height="96" />
+                  </Grid>
+                  <Grid item xs={8}>
+                    <Typography variant="body1">
+                      <Truncate lines={2} ellipsis={<span>...</span>}>
+                        {item.title}
+                      </Truncate>
+                    </Typography>
+                    <Typography variant="body1" color="secondary">
+                      {item.price}
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          ))}
+            ))
+            : (
+              <Container maxWidth="xl" align="center" className={classes.wishContainer}>
+                <img src={wish} alt="not found" width="80%" />
+                <Typography variant="subtitle1">
+                  Save your dream item here
+                </Typography>
+              </Container>
+            )}
         </Grid>
       </Container>
     </>

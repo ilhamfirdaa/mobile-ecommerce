@@ -12,14 +12,15 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import googleIcon from '../google.svg'
-import facebookIcon from '../facebook.svg'
+import googleIcon from '../assets/images/google.svg'
+import facebookIcon from '../assets/images/facebook.svg'
 
 import { setLogin } from '../actions'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   formContainer: {
-    padding: theme.spacing(10, 2, 0),
+    position: 'absolute',
+    top: '20%',
   },
 }))
 

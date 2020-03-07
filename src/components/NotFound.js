@@ -1,7 +1,36 @@
 import React from 'react'
 
-const NotFound = () => (
-  <h2>Not Found</h2>
-)
+import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+
+import notFound from '../assets/images/not_found.svg'
+
+const useStyles = makeStyles(() => ({
+  mainContainer: {
+    position: 'absolute',
+    top: '25%',
+  },
+}))
+
+const NotFound = ({ history }) => {
+  const classes = useStyles()
+  return (
+    <Container maxWidth="xl" align="center" className={classes.mainContainer}>
+      <img src={notFound} alt="not found" width="80%" />
+      <Typography variant="h6">
+        Page not found
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => history.goBack()}
+      >
+        Back
+      </Button>
+    </Container>
+  )
+}
 
 export default NotFound

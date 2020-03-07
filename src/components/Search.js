@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Truncate from 'react-truncate'
 
 import {
@@ -32,6 +32,7 @@ const Search = ({ history, location }) => {
   const { products } = location.state
   const [find, setFind] = useState('')
   const [found, setFound] = useState([])
+  const keyword = useRef('')
 
   const handleClickProduct = (product) => {
     history.push({
@@ -44,7 +45,7 @@ const Search = ({ history, location }) => {
     e.persist()
     const { value } = e.target
     setFind((value))
-
+    console.log(keyword)
     if (value !== '') {
       const res = products.filter((item) => item.title.toLowerCase().includes(value.toLowerCase()))
       setFound(res)
@@ -70,6 +71,7 @@ const Search = ({ history, location }) => {
           </Grid>
           <Grid item xs={10}>
             <TextField
+              ref={keyword}
               autoFocus
               variant="outlined"
               fullWidth

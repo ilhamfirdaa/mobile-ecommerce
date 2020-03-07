@@ -233,7 +233,7 @@ const Home = ({
                         {product.title}
                       </Truncate>
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body1" color="secondary">
                       {product.price}
                     </Typography>
                   </div>

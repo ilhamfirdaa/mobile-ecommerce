@@ -93,6 +93,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     padding: '5px',
   },
+  modalNotif: {
+    left: '56px',
+    right: '56px',
+  },
 }))
 
 const Transition = forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />)
@@ -104,10 +108,8 @@ const Detail = ({
   const { product } = location.state
   const shareUrl = window.location.href
   const [openModal, setOpenModal] = useState(false)
-  const [state, setState] = useState({
-    open: false,
-    Transition: Slide,
-  })
+  const [message, setMessage] = useState('')
+  const [openNotif, setopenNotif] = useState(false)
 
   const handleLoveProduct = (item) => {
     dispatch(toogleWishlist(item))
@@ -115,13 +117,13 @@ const Detail = ({
 
   const handleBuy = (item) => {
     dispatch(buyProduct(item))
+
+    setMessage('Product purchased')
+    setopenNotif(true)
   }
 
   const handleCloseNotif = () => {
-    setState({
-      ...state,
-      open: false,
-    })
+    setopenNotif(false)
   }
 
   const handleClickOpen = () => {
@@ -136,7 +138,7 @@ const Detail = ({
     history.goBack()
   }
 
-  const handleCopyUrl = (SlideTop) => {
+  const handleCopyUrl = () => {
     const el = document.createElement('input')
     el.value = shareUrl
     document.body.appendChild(el)
@@ -145,14 +147,8 @@ const Detail = ({
     document.execCommand('copy')
     document.body.removeChild(el)
 
-    setState({
-      open: true,
-      Transition: SlideTop,
-    })
-  }
-
-  function SlideTransition(props) {
-    return <Slide {...props} direction="up" />
+    setMessage('URL copied')
+    setopenNotif(true)
   }
 
   const ShareModal = () => (
@@ -242,7 +238,7 @@ const Detail = ({
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <LinkRoundedIcon className={classes.copyIcon} onClick={() => handleCopyUrl(SlideTransition)} />
+            <LinkRoundedIcon className={classes.copyIcon} onClick={() => handleCopyUrl()} />
             <Typography variant="body2">
               Copy Link
             </Typography>
@@ -354,17 +350,20 @@ const Detail = ({
       </Dialog>
 
       <Snackbar
-        open={state.open}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        open={openNotif}
         onClose={handleCloseNotif}
-        TransitionComponent={state.Transition}
         autoHideDuration={3000}
-        message="URL copied"
+        message={message}
+        className={classes.modalNotif}
       />
     </>
   )
 }
 
 export default connect((state) => ({
-  isLoading: state.appLoading.isLoading,
   wishlist: state.appWishlist,
 }), null)(Detail)
