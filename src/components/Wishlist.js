@@ -98,7 +98,7 @@ const Wishlist = ({ history, wishlist }) => {
               <Container maxWidth="xl" align="center" className={classes.wishContainer}>
                 <img src={wish} alt="not found" width="80%" />
                 <Typography variant="subtitle1">
-                  Save your dream products here
+                  Save your dream items here
                 </Typography>
               </Container>
             )}
